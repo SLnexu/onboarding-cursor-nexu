@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conectar Cursor al repo de Nexu — Guía para PMs</title>
+<meta name="description" content="Guía para PMs de Nexu: cuentas de GitHub, Cursor y Linear antes de la sesión.">
+<style>
+  :root {
+    --texto: #1c1e21;
+    --suave: #5b6270;
+    --linea: #e3e6ea;
+    --fondo: #ffffff;
+    --acento: #2f6feb;
+    --caja: #f6f8fa;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font: 17px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter,
+      Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .envoltura { max-width: 760px; margin: 0 auto; padding: 56px 24px 96px; }
+  .marca {
+    font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--suave); margin-bottom: 28px;
+  }
+  h1 { font-size: 40px; line-height: 1.15; letter-spacing: -.02em; margin: 0 0 20px; }
+  h2 {
+    font-size: 26px; letter-spacing: -.01em; margin: 56px 0 16px;
+    padding-top: 28px; border-top: 1px solid var(--linea);
+  }
+  h3 { font-size: 19px; margin: 32px 0 10px; }
+  p, li { color: var(--texto); }
+  a { color: var(--acento); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  hr { display: none; }
+  code {
+    background: var(--caja); border: 1px solid var(--linea); border-radius: 5px;
+    padding: 1px 5px; font-size: .88em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  ol, ul { padding-left: 22px; }
+  li { margin: 7px 0; }
+  table {
+    width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 15.5px;
+    display: block; overflow-x: auto;
+  }
+  th, td {
+    border: 1px solid var(--linea); padding: 10px 13px; text-align: left;
+    vertical-align: top;
+  }
+  th { background: var(--caja); font-weight: 600; }
+  .indice {
+    background: var(--caja); border: 1px solid var(--linea); border-radius: 10px;
+    padding: 18px 22px; margin: 32px 0 8px;
+  }
+  .indice p {
+    margin: 0 0 8px; font-size: 13px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--suave);
+  }
+  .indice ul { margin: 0; padding-left: 18px; }
+  .indice li { margin: 4px 0; }
+  .contains-task-list { list-style: none; padding-left: 2px; }
+  .task-list-item-checkbox { margin-right: 9px; }
+  footer {
+    margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--linea);
+    color: var(--suave); font-size: 14px;
+  }
+  @media (max-width: 600px) {
+    .envoltura { padding: 36px 18px 72px; }
+    h1 { font-size: 31px; }
+    h2 { font-size: 23px; }
+  }
+</style>
+</head>
+<body>
+<div class="envoltura">
+  <div class="marca">Nexu · Onboarding</div>
+<h1 id="conectar-cursor-al-repo-de-nexu">Conectar Cursor al repo de Nexu</h1>
+<p>Guía para PMs. Al terminar vas a poder preguntarle al agente cómo funciona el
+producto y que te conteste leyendo el código real, sacar análisis y reportes, y
+consultar y crear tickets de Linear sin salir de la conversación.</p>
+<p>No vas a programar ni a instalar el backend. No hace falta.</p>
+<p>Necesitas tres cuentas: <strong>GitHub</strong>, <strong>Cursor</strong> y <strong>Linear</strong>. Cada sección está
+partida en "si ya la tienes" y "si no la tienes": lee solo tu rama.</p>
+<table>
+<thead>
+<tr>
+<th>Cuenta</th>
+<th>Para qué la necesitas</th>
+<th>Cómo llega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GitHub</td>
+<td>Donde vive el código que vas a leer</td>
+<td>Remigio manda la invitación a tu correo de Nexu</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td>La aplicación donde conversas con el agente</td>
+<td>Asiento en la cuenta de Nexu</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td>Tickets y proyectos, desde el chat</td>
+<td>Remigio manda la invitación al workspace</td>
+</tr>
+</tbody>
+</table>
+<hr>
+  <div class="indice">
+    <p>Contenido</p>
+    <ul>
+      <li><a href="#1-github">1. GitHub</a></li>
+      <li><a href="#2-cursor">2. Cursor</a></li>
+      <li><a href="#3-linear">3. Linear</a></li>
+      <li><a href="#4-lo-que-hacemos-en-la-sesion">4. Lo que hacemos en la sesión</a></li>
+      <li><a href="#checklist-para-el-dia-de-la-sesion">Checklist para el día de la sesión</a></li>
+      <li><a href="#todos-los-enlaces">Todos los enlaces</a></li>
+    </ul>
+  </div>
+<h2 id="1-github">1. GitHub</h2>
+<p>La invitación llega a <strong>tu correo de Nexu</strong>, así que lo único que tienes que
+asegurar es que ese correo esté en tu cuenta de GitHub.</p>
+<h3 id="si-ya-tienes-cuenta-de-github">Si ya tienes cuenta de GitHub</h3>
+<p>No crees otra. Agrega tu correo de Nexu a la que ya usas:</p>
+<ol>
+<li>Entra a <a href="https://github.com/settings/emails">github.com/settings/emails</a>.</li>
+<li>En <strong>Add email address</strong> escribe tu correo de Nexu y dale <strong>Add</strong>.</li>
+<li>Abre el correo de verificación de GitHub y confirma.</li>
+<li>Revisa que tengas 2FA activado en
+<a href="https://github.com/settings/security">github.com/settings/security</a>. Si no lo
+tienes, actívalo con los pasos de abajo: sin 2FA no vas a poder aceptar la
+invitación.</li>
+</ol>
+<h3 id="si-no-tienes-cuenta-de-github">Si no tienes cuenta de GitHub</h3>
+<ol>
+<li>Entra a <a href="https://github.com/signup">github.com/signup</a>.</li>
+<li>Usa <strong>tu correo de Nexu</strong>, no uno personal. Ahí te va a llegar la invitación.</li>
+<li>Crea la contraseña y guárdala en el gestor de contraseñas de la empresa.</li>
+<li>Elige tu nombre de usuario. Es público y único en todo GitHub, así que usa
+algo profesional y reconocible (<code>nombre-apellido</code>). Vas a aparecer así en el
+repo.</li>
+<li>Activa la verificación en dos pasos en
+<a href="https://github.com/settings/security">github.com/settings/security</a>:
+<strong>Enable two-factor authentication</strong> → <strong>Authenticator app</strong> → escanea el
+código con tu app de autenticación (Google Authenticator, 1Password o la que
+uses).</li>
+<li><strong>Guarda los códigos de recuperación</strong> que te muestra. Si pierdes el
+teléfono, son la única forma de recuperar tu cuenta.</li>
+</ol>
+<h3 id="aceptar-la-invitacion">Aceptar la invitación</h3>
+<p>Cuando llegue el correo de GitHub, <strong>ábrelo y acéptalo</strong>. Que te hayan invitado
+no basta; mientras no aceptes, no tienes acceso. Aquí se atora la mayoría.</p>
+<p>Para comprobar que quedó, entra a
+<a href="https://github.com/prestemos/prestemos_backend">github.com/prestemos/prestemos_backend</a>:
+si ves el código y no un 404, estás dentro.</p>
+<hr>
+<h2 id="2-cursor">2. Cursor</h2>
+<h3 id="si-ya-tienes-cursor-instalado">Si ya tienes Cursor instalado</h3>
+<p>Sáltate la instalación y revisa dos cosas:</p>
+<ul>
+<li>Que la app esté actualizada: menú <strong>Cursor → Check for Updates</strong>.</li>
+<li>Con qué cuenta estás conectado: <strong>Cmd + Shift + J</strong> → <strong>General → Account</strong>.
+Tiene que ser tu correo de Nexu, no una cuenta personal.</li>
+</ul>
+<h3 id="si-no-tienes-cursor">Si no tienes Cursor</h3>
+<p>Necesitas macOS 12 (Monterey) o posterior.</p>
+<ol>
+<li>Entra a <a href="https://cursor.com/download" rel="nofollow">cursor.com/download</a> y descarga la
+versión para Mac.</li>
+<li>Abre el archivo descargado y <strong>arrastra Cursor a la carpeta Applications</strong>.</li>
+<li>Abre Cursor desde Aplicaciones.</li>
+<li>La app te va a pedir iniciar sesión. Hazlo con tu correo de Nexu.</li>
+</ol>
+<p>Opcional, solo si vienes de VS Code y quieres tus extensiones: <strong>Cmd + Shift + J</strong>
+→ <strong>General → Account</strong> → botón <strong>Import</strong> en VS Code Import.</p>
+<h3 id="unirte-a-la-cuenta-de-nexu">Unirte a la cuenta de Nexu</h3>
+<p>Te llega una invitación por correo desde el panel de Cursor: ábrela y acéptala.
+Si Nexu tiene activado el ingreso por dominio, puede que te unas automáticamente
+al iniciar sesión con tu correo de la empresa.</p>
+<p><strong>Si hoy pagas Cursor Pro por tu cuenta:</strong> al unirte al equipo, esa suscripción
+individual <strong>se cancela automáticamente</strong>. Es lo normal, pero mejor saberlo antes
+que después del cargo. Una cuenta solo puede pertenecer a un equipo a la vez.</p>
+<p>Si Cursor no conecta por la VPN o el proxy de la empresa: <strong>Cmd + Shift + J</strong> →
+<strong>Network</strong> → cambia <strong>HTTP Compatibility Mode</strong> a <strong>HTTP/1.1</strong>.</p>
+<hr>
+<h2 id="3-linear">3. Linear</h2>
+<h3 id="si-ya-usas-linear">Si ya usas Linear</h3>
+<p>Confirma que entras a <a href="https://linear.app" rel="nofollow">linear.app</a> con tu correo de Nexu y
+que ves los proyectos del equipo. Pasa a conectarlo con Cursor.</p>
+<h3 id="si-no-usas-linear">Si no usas Linear</h3>
+<p>La invitación al workspace también llega a tu correo de Nexu. Acéptala y entra a
+<a href="https://linear.app" rel="nofollow">linear.app</a> para definir tu acceso.</p>
+<h3 id="conectar-linear-con-cursor">Conectar Linear con Cursor</h3>
+<p>Esto es lo que le permite al agente leer y crear tickets desde la conversación.
+Hazlo después de tener acceso a Linear, porque te va a pedir iniciar sesión. Es
+de un clic: no tienes que editar ningún archivo de configuración.</p>
+<ol>
+<li>Abre Cursor.</li>
+<li>En la barra lateral, entra a <strong>Customize</strong>.</li>
+<li>Haz clic en <strong>MCPs</strong>.</li>
+<li>Busca <strong>Linear</strong> en la lista.</li>
+<li>Dale <strong>Add to Cursor</strong>.</li>
+<li>Sigue los pasos de autenticación: se abre el navegador para que autorices el
+acceso con tu cuenta de Linear.</li>
+</ol>
+<p>Para comprobar que quedó, abre un chat nuevo y revisa la lista de herramientas
+arriba del panel: deben aparecer las de Linear. Si algo falla, <strong>Cmd + Shift + U</strong>
+→ <strong>MCP Logs</strong> muestra el error real; si de plano no conecta, quítalo desde
+<strong>Customize → MCPs</strong> y agrégalo otra vez.</p>
+<p>La primera vez que el agente use una herramienta de Linear te va a pedir
+aprobación. Es normal: Cursor confirma antes de tocar algo fuera del editor.</p>
+<p>Si prefieres, este paso lo hacemos juntos en la sesión.</p>
+<hr>
+<h2 id="4-lo-que-hacemos-en-la-sesion">4. Lo que hacemos en la sesión</h2>
+<p>Nada de esto lo tienes que preparar; es para que sepas a qué vas.</p>
+<p><strong>Descargar el repo.</strong> Copiamos el código a tu computadora. Toma unos minutos y
+necesitas alrededor de 500 MB libres. Lo dejamos configurado para que puedas
+leer, pero no publicar cambios.</p>
+<p><strong>Las dos formas de usarlo.</strong> Cursor tiene varios modos; a ti te importan dos, y
+se cambia entre ellos con <strong>Shift + Tab</strong> o con <strong>Cmd + .</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Modo</th>
+<th>Qué hace</th>
+<th>Cuándo lo usas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ask</strong></td>
+<td>Solo lee y responde. <strong>No modifica nada.</strong></td>
+<td>Entender cómo funciona algo: "¿cómo se valida el comprobante de domicilio?"</td>
+</tr>
+<tr>
+<td><strong>Agent</strong></td>
+<td>Lee, escribe archivos, corre comandos y usa Linear.</td>
+<td>Sacar un reporte, armar un análisis con datos, crear un ticket</td>
+</tr>
+</tbody>
+</table>
+<p>Empieza en <strong>Ask</strong>: por diseño no cambia nada, así que puedes preguntar lo que
+sea sin miedo a romper algo.</p>
+<p>Cuando pases a <strong>Agent</strong>, ten presentes las dos redes de seguridad: el botón
+<strong>Stop</strong> lo interrumpe a media tarea, y pasando el cursor sobre cualquier mensaje
+anterior aparece <strong>Restore Checkpoint</strong>, que revierte todo lo que hizo después de
+ese punto.</p>
+<p>Además, el repo trae reglas propias que el agente respeta solo: los reportes se
+guardan en la carpeta que les toca, con el formato definido y la evidencia que
+dev necesita. No tienes que pedirlo.</p>
+<hr>
+<h2 id="checklist-para-el-dia-de-la-sesion">Checklist para el día de la sesión</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" aria-label="Incomplete task"> Cuenta de GitHub con mi correo de Nexu</li>
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" aria-label="Incomplete task"> 2FA activado en GitHub</li>
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" aria-label="Incomplete task"> Invitación al repo aceptada (veo el código, no un 404)</li>
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" aria-label="Incomplete task"> Cursor instalado y con sesión en la cuenta de Nexu</li>
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" aria-label="Incomplete task"> Invitación de Linear aceptada</li>
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" aria-label="Incomplete task"> ~500 MB libres en disco</li>
+<li class="task-list-item"><input type="checkbox" id="" disabled="" class="task-list-item-checkbox" aria-label="Incomplete task"> Puedo instalar programas en mi computadora (permiso de administrador)</li>
+</ul>
+<p>Si algo de esto no se pudo, avísame <strong>antes</strong> de la sesión. Casi todo depende de
+que alguien apruebe un acceso, y eso no se resuelve en el momento.</p>
+<hr>
+<h2 id="todos-los-enlaces">Todos los enlaces</h2>
+<table>
+<thead>
+<tr>
+<th>Para qué</th>
+<th>Enlace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crear cuenta de GitHub</td>
+<td><a href="https://github.com/signup">github.com/signup</a></td>
+</tr>
+<tr>
+<td>Agregar el correo de Nexu a una cuenta existente</td>
+<td><a href="https://github.com/settings/emails">github.com/settings/emails</a></td>
+</tr>
+<tr>
+<td>Activar 2FA</td>
+<td><a href="https://github.com/settings/security">github.com/settings/security</a></td>
+</tr>
+<tr>
+<td>Ver mi usuario de GitHub</td>
+<td><a href="https://github.com/settings/profile">github.com/settings/profile</a></td>
+</tr>
+<tr>
+<td>Comprobar que tengo acceso al repo</td>
+<td><a href="https://github.com/prestemos/prestemos_backend">github.com/prestemos/prestemos_backend</a></td>
+</tr>
+<tr>
+<td>Descargar Cursor</td>
+<td><a href="https://cursor.com/download" rel="nofollow">cursor.com/download</a></td>
+</tr>
+<tr>
+<td>Entrar a Linear</td>
+<td><a href="https://linear.app" rel="nofollow">linear.app</a></td>
+</tr>
+</tbody>
+</table>
+
+  <footer>¿Algo no se pudo? Escríbeme por Slack antes de la sesión.</footer>
+</div>
+</body>
+</html>
