@@ -3,8 +3,9 @@ name: onboarding-pm
 description: >-
   Acompaña a un PM de Nexu, paso a paso y verificando cada paso, hasta dejar
   Cursor conectado al repo prestemos_backend: revisa accesos de GitHub, crea
-  la llave SSH, clona el repo en solo lectura, lo abre como workspace, conecta
-  el MCP de Linear y le muestra la diferencia entre Ask y Agent. Usar cuando
+  la llave SSH, clona el repo en solo lectura, lo abre como workspace, lo deja
+  actualizándose solo una vez al día, conecta el MCP de Linear y le muestra la
+  diferencia entre Ask y Agent. Usar cuando
   alguien arranca su onboarding en el repo, no puede clonarlo, o pregunta qué
   necesita para conectar Cursor.
 disable-model-invocation: true
@@ -18,8 +19,8 @@ por qué `git clone` falla. Tu trabajo es llevarlo de "tengo Cursor abierto" a
 los errores.
 
 **Termina cuando** el repo está clonado, en solo lectura, abierto como
-workspace, con el MCP de Linear conectado, y el PM entendió la diferencia entre
-Ask y Agent. Conectar el MCP de Postgres es otra skill: no lo intentes aquí.
+workspace, actualizándose solo, con el MCP de Linear conectado, y el PM entendió
+la diferencia entre Ask y Agent. Conectar el MCP de Postgres es otra skill: no lo intentes aquí.
 
 ## Distribución (para quien comparte esta skill)
 
@@ -57,7 +58,7 @@ medias.
 | **Cursor instalado y con sesión iniciada** en la cuenta de Nexu | Es donde ocurre la conversación |
 
 Y uno más que no detiene la sesión pero sí un paso: sin **acceso al workspace de
-Linear**, el Paso 7 no se puede completar. Sigue con lo demás y déjalo anotado.
+Linear**, el Paso 8 no se puede completar. Sigue con lo demás y déjalo anotado.
 
 Lo demás lo puedes resolver en la sesión, pero conviene tenerlo listo porque
 son descargas lentas: git instalado (`xcode-select --install`, ~10 min),
@@ -67,7 +68,7 @@ alrededor de **500 MB libres** y una red estable para el clon.
 
 Esto importa tanto como los comandos:
 
-- **Un paso a la vez.** Nunca listes los 6 pasos ni pegues un bloque de
+- **Un paso a la vez.** Nunca listes todos los pasos ni pegues un bloque de
   comandos. Un paso, su resultado, confirmación, siguiente.
 - **Ejecuta tú.** Corre los comandos con la terminal y explica el resultado en
   lenguaje llano. Solo le pides que haga algo cuando de verdad requiere sus
@@ -223,7 +224,57 @@ Las reglas de `.cursor/rules/` se cargan solas: son las que hacen que el agente
 guarde reportes en `reportes/`, arme fichas para DEV y consulte la base con
 cuidado. Menciónalo en una línea, sin explicarlas.
 
-## Paso 7 — Conectar el MCP de Linear
+## Paso 7 — Dejar el repo actualizándose solo
+
+El repo cambia todos los días. Si nadie lo actualiza, en dos semanas el PM va a
+estar analizando código que ya no existe, sin enterarse. No va a correr
+`git pull` por su cuenta, así que se lo dejas automático.
+
+Es un hook de Cursor: cada vez que abre una sesión revisa si ya pasaron 24 horas
+desde la última actualización y, si sí, actualiza el repo en segundo plano. No
+retrasa el arranque y no pisa nada: usa `--ff-only`, así que ante cualquier
+divergencia se detiene y lo anota en su bitácora. Vive en la carpeta personal de
+Cursor, no en el repo, y en cualquier otra carpeta no hace nada porque primero
+valida que el `origin` sea `prestemos_backend`.
+
+Descarga el script y hazlo ejecutable:
+
+```bash
+mkdir -p ~/.cursor/hooks
+curl -fsSL https://slnexu.github.io/onboarding-cursor-nexu/actualizar-repo.sh \
+  -o ~/.cursor/hooks/actualizar-repo-prestemos.sh
+chmod +x ~/.cursor/hooks/actualizar-repo-prestemos.sh
+```
+
+Si `~/.cursor/hooks.json` no existe, créalo con esto. Si ya existe, **agrega la
+entrada** a `sessionStart` en vez de sobrescribir el archivo:
+
+```json
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      { "command": "./hooks/actualizar-repo-prestemos.sh", "timeout": 15 }
+    ]
+  }
+}
+```
+
+Pruébalo ahí mismo, sin esperar a mañana:
+
+```bash
+echo '{"workspace_roots":["'"$HOME"'/dev/prestemos_backend"]}' | ~/.cursor/hooks/actualizar-repo-prestemos.sh
+sleep 5 && cat ~/.cursor/hooks/actualizar-repo-prestemos.log
+```
+
+La bitácora debe decir `actualizado`. Si dice `fallo al actualizar`, el motivo
+real está en las líneas de arriba: casi siempre es que no había red, o que el
+repo quedó con commits locales y ya no puede avanzar derecho.
+
+Dilo en una línea: de aquí en adelante, cada día que abra Cursor el repo se pone
+al día solo. Y dile dónde está la bitácora, por si algún día quiere confirmarlo.
+
+## Paso 8 — Conectar el MCP de Linear
 
 Esto es lo que le deja consultar y crear tickets desde el chat. Es de un clic:
 **no lo mandes a editar un `mcp.json`**.
@@ -248,7 +299,7 @@ error real está en **Cmd + Shift + U** → **MCP Logs**; y la forma documentada
 Avísale que la primera vez que el agente use una herramienta de Linear le va a
 pedir aprobación, para que el popup no lo asuste.
 
-## Paso 8 — Mostrarle las dos formas de usarlo
+## Paso 9 — Mostrarle las dos formas de usarlo
 
 No expliques los cuatro modos. Solo estos dos, y con un ejemplo real corrido en
 vivo — que lo vea funcionando pesa más que la explicación.
@@ -276,7 +327,7 @@ de ese punto.
 Menciona también que **Ask no cambia nada por diseño**: es el modo para
 explorar sin riesgo, y es donde debería empezar.
 
-## Paso 9 — Cierre
+## Paso 10 — Cierre
 
 Repite el checklist con lo que quedó verificado:
 
@@ -286,6 +337,7 @@ Repite el checklist con lo que quedó verificado:
 - [ ] Repo clonado en <ruta>
 - [ ] Push deshabilitado
 - [ ] Repo abierto en Cursor
+- [ ] Actualización diaria activada
 - [ ] MCP de Linear conectado
 - [ ] Vio Ask y Agent funcionando
 ```
