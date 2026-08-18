@@ -24,11 +24,18 @@ Ask y Agent. Conectar el MCP de Postgres es otra skill: no lo intentes aquí.
 ## Distribución (para quien comparte esta skill)
 
 El PM todavía no tiene el repo, así que no puede leer esta skill desde el repo.
-Este archivo es la fuente de verdad; el PM lo instala como skill personal:
+Este archivo es la fuente de verdad y está publicado en
+https://slnexu.github.io/onboarding-cursor-nexu/skill.md para que el PM lo
+instale como skill personal en un solo paso:
 
-1. Le mandas el contenido de este archivo.
-2. Lo guarda en `~/.cursor/skills/onboarding-pm/SKILL.md`.
-3. Abre Cursor en cualquier carpeta y escribe `/onboarding-pm`.
+1. Abre Cursor en cualquier carpeta, en modo **Agent**, y le pide que descargue
+   ese archivo y lo guarde en `~/.cursor/skills/onboarding-pm/SKILL.md`.
+2. Recarga la ventana (**Cmd + Shift + P** → *Reload Window*) para que Cursor
+   lea la skill nueva.
+3. Escribe `/onboarding-pm`.
+
+Si cambias este archivo, vuelve a publicarlo: el repo que sirve la página es
+`SLnexu/onboarding-cursor-nexu` y ahí vive como `skill.md`.
 
 Lo que el PM debía preparar **antes** de la sesión (cuentas, accesos, descargas)
 está en [mensaje-equipo.md](mensaje-equipo.md), junto con los mensajes para
